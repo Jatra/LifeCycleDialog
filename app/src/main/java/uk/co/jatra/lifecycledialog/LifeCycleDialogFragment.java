@@ -7,19 +7,19 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 
-import static uk.co.jatra.lifecycledialog.DialogViewModel.Answer.NO;
-import static uk.co.jatra.lifecycledialog.DialogViewModel.Answer.NO_ANSWER;
-import static uk.co.jatra.lifecycledialog.DialogViewModel.Answer.YES;
+import static uk.co.jatra.lifecycledialog.AnswerModel.Answer.NO;
+import static uk.co.jatra.lifecycledialog.AnswerModel.Answer.NO_ANSWER;
+import static uk.co.jatra.lifecycledialog.AnswerModel.Answer.YES;
 
 public class LifeCycleDialogFragment extends DialogFragment {
 
-    private DialogViewModel dialogViewModel;
-    private DialogViewModel.Answer answer = NO_ANSWER;
+    private AnswerModel answerModel;
+    private AnswerModel.Answer answer = NO_ANSWER;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dialogViewModel = ViewModelProviders.of(getActivity()).get(DialogViewModel.class);
+        answerModel = ViewModelProviders.of(getActivity()).get(AnswerModel.class);
     }
 
     @Override
@@ -38,6 +38,6 @@ public class LifeCycleDialogFragment extends DialogFragment {
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-        dialogViewModel.answer(answer);
+        answerModel.answer(answer);
     }
 }

@@ -17,13 +17,13 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.textview);
         Button button = findViewById(R.id.button);
 
-        DialogViewModel dialogViewModel = ViewModelProviders.of(this).get(DialogViewModel.class);
+        AnswerModel answerModel = ViewModelProviders.of(this).get(AnswerModel.class);
         button.setOnClickListener(view -> new LifeCycleDialogFragment().show(getSupportFragmentManager(), "tag"));
 
-        dialogViewModel.getDialogAnswer().observe(this, this::setAnswer);
+        answerModel.getDialogAnswer().observe(this, this::setAnswer);
     }
 
-    private void setAnswer(DialogViewModel.Answer answer) {
+    private void setAnswer(AnswerModel.Answer answer) {
         textView.setText(answer.name());
     }
 }

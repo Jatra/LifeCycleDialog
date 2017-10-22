@@ -2,11 +2,8 @@ package uk.co.jatra.lifecycledialog;
 
 import android.arch.lifecycle.ViewModel;
 
-/**
- * Created by tim on 22/10/2017.
- */
 
-public class DialogViewModel extends ViewModel {
+public class AnswerModel extends ViewModel {
     public enum Answer {
         NO_ANSWER,
         YES,
