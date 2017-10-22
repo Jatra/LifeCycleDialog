@@ -17,9 +17,9 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.textview);
         Button button = findViewById(R.id.button);
 
-        button.setOnClickListener(view -> new LiveCycleDialog().show(getSupportFragmentManager(), "tag"));
-
         DialogViewModel dialogViewModel = ViewModelProviders.of(this).get(DialogViewModel.class);
+        button.setOnClickListener(view -> new LifeCycleDialogFragment().show(getSupportFragmentManager(), "tag"));
+
         dialogViewModel.getDialogAnswer().observe(this, this::setAnswer);
     }
 

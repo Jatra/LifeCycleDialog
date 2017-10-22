@@ -11,7 +11,7 @@ import static uk.co.jatra.lifecycledialog.DialogViewModel.Answer.NO;
 import static uk.co.jatra.lifecycledialog.DialogViewModel.Answer.NO_ANSWER;
 import static uk.co.jatra.lifecycledialog.DialogViewModel.Answer.YES;
 
-public class LiveCycleDialog extends DialogFragment {
+public class LifeCycleDialogFragment extends DialogFragment {
 
     private DialogViewModel dialogViewModel;
     private DialogViewModel.Answer answer = NO_ANSWER;
