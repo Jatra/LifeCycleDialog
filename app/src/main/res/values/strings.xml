@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">LifeCycleDialog</string>
+    <string name="dialog_title">Lifecycle</string>
+    <string name="dialog_message">Have you rotated recently?</string>
+    <string name="dialog_negative_button_label">No</string>
+    <string name="dialog_positive_button_label">Yes</string>
 </resources>

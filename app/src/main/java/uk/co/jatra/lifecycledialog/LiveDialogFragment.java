@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -53,42 +54,42 @@ public class LiveDialogFragment extends DialogFragment {
         return (AnswerModel) getArguments().getSerializable(ANSWER_MODEL);
     }
 
-    public static class Creator {
+    public static class LiveDialog {
         private final Bundle bundle;
         private final String key;
         private final AnswerModel answerModel;
         private final FragmentActivity activity;
 
-        public Creator(FragmentActivity activity, String key) {
+        public LiveDialog(FragmentActivity activity, String key) {
             this.activity = activity;
             this.key = key;
             bundle = new Bundle();
             bundle.putString(KEY, key);
-            answerModel = ViewModelProviders.of(activity).get(bundle.getString(KEY), AnswerModel.class);
+            answerModel = ViewModelProviders.of(activity).get(key, AnswerModel.class);
             bundle.putSerializable(ANSWER_MODEL, answerModel);
         }
 
-        public Creator title(String title) {
-            bundle.putString(TITLE, title);
+        public LiveDialog title(@StringRes int title) {
+            bundle.putString(TITLE, activity.getString(title));
             return this;
         }
 
-        public Creator message(String message) {
-            bundle.putString(MESSAGE, message);
+        public LiveDialog message(@StringRes int message) {
+            bundle.putString(MESSAGE, activity.getString(message));
             return this;
         }
 
-        public Creator positive(String positive) {
-            bundle.putString(POSITIVE, positive);
+        public LiveDialog positive(@StringRes int positive) {
+            bundle.putString(POSITIVE, activity.getString(positive));
             return this;
         }
 
-        public Creator negative(String negative) {
-            bundle.putString(NEGATIVE, negative);
+        public LiveDialog negative(@StringRes int negative) {
+            bundle.putString(NEGATIVE, activity.getString(negative));
             return this;
         }
 
-        public Creator observe(Observer<Answer> observer) {
+        public LiveDialog observe(Observer<Answer> observer) {
             answerModel.getAnswer().observe(activity, observer);
             return this;
         }

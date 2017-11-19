@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 
-import uk.co.jatra.lifecycledialog.AnswerModel.Answer;
+import uk.co.jatra.lifecycledialog.LiveDialogFragment.LiveDialog;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,24 +24,20 @@ public class MainActivity extends AppCompatActivity {
             textView.setText(savedInstanceState.getString(TEXT1));
         }
 
-        final LiveDialogFragment.Creator creator = new LiveDialogFragment.Creator(this, KEY)
-                .message("Have you rotated recently?")
-                .title("Lifecycle")
-                .negative("No")
-                .positive("Yes")
-                .observe(this::handleAnswer);
+        final LiveDialog liveDialog = new LiveDialog(this, KEY)
+                .title(R.string.dialog_title)
+                .message(R.string.dialog_message)
+                .negative(R.string.dialog_negative_button_label)
+                .positive(R.string.dialog_positive_button_label)
+                .observe(answer -> textView.setText(answer.name()));
 
-        button.setOnClickListener(view -> creator.display());
+        button.setOnClickListener(view -> liveDialog.display());
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putString(TEXT1, textView.getText().toString());
         super.onSaveInstanceState(outState);
-    }
-
-    private void handleAnswer(Answer answer) {
-        textView.setText(answer.name());
     }
 
 }
